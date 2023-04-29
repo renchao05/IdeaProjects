@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+              http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    <bean id="user" class="com.chaoRen.spring5.User">-->
+<!--        <property name="name" value="任超"></property>-->
+<!--        <property name="age" value="31"></property>-->
+<!--        <property name="sex">-->
+<!--            <value><![CDATA[<<男>>]]></value>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+    <bean id="user" class="com.chaoRen.spring5.User" >
+        <property name="name" value="任超"/>
+        <property name="age" value="31"/>
+        <property name="sex">
+            <null/>
+        </property>
+    </bean>
+
+<!--    <bean id="user" class="com.chaoRen.spring5.User">-->
+<!--        <constructor-arg name="name" value="任超333"></constructor-arg>-->
+<!--        <constructor-arg name="age" value="32"></constructor-arg>-->
+<!--    </bean>-->
+
+<!--    <bean id="user" class="com.chaoRen.spring5.User" p:name="任超pp" p:age="25"/>-->
+</beans>

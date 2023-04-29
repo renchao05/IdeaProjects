@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:v-model.trim="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+	<script type="text/javascript" src="../script/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="../script/vue.js"></script>
+	<script type="text/javascript" src="../script/myjs.js"></script>
+</head>
+<body>
+<div></div>
+	<button id="btnId">SayHello</button>
+<br><br>
+
+<div id="app">
+	<input type="text" v-model.trim:value="vueValue">
+	<p>{{vueValue}}</p>
+</div>
+
+</body>
+</html>

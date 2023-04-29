@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="common/admin :: header"></head>
+
+<body>
+
+<nav th:replace="common/admin :: nav"></nav>
+<div class="container-fluid">
+    <div class="row">
+
+        <div th:replace="common/admin :: sidebar"></div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">控制面板</h1>
+
+            <div>
+                <span th:text="${#authentication.name}"></span><br>
+                <span th:text="${#authentication.principal.password}"></span><br>
+                <span th:text="${#authentication.principal.originalAdmin.userPswd}"></span><br>
+                <span th:text="${#authentication.principal.class.name}"></span><br>
+
+            </div>
+
+            <div class="row placeholders">
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <img data-src="holder.js/200x200/auto/sky" class="img-responsive"
+                         alt="Generic placeholder thumbnail">
+                    <h4>Label</h4>
+                    <span class="text-muted">Something else</span>
+                </div>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <img data-src="holder.js/200x200/auto/vine" class="img-responsive"
+                         alt="Generic placeholder thumbnail">
+                    <h4>Label</h4>
+                    <span class="text-muted">Something else</span>
+                </div>
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <img data-src="holder.js/200x200/auto/sky" class="img-responsive"
+                         alt="Generic placeholder thumbnail">
+                    <h4>Label</h4>
+                    <span class="text-muted">Something else</span>
+                </div>
+                <!--自己测试，只能使用 hasRole 表达式，也就是说只能设置角色-->
+                <div sec:authorize="hasRole('ROLE_经理')" class="col-xs-6 col-sm-3 placeholder">
+                    <img data-src="holder.js/200x200/auto/vine" class="img-responsive"
+                         alt="Generic placeholder thumbnail">
+                    <h4>Label</h4>
+                    <span class="text-muted">Something else</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <script type="text/javascript" th:src="@{/script/vue.js}"></script>-->
+    <script type="text/javascript" th:src="@{/script/jquery-1.7.2.min.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            var json = {
+                id: 1,
+                loginAcct: "超01",
+                userPswd: 1234,
+                userName: "超一号",
+                email: "11@qq.com"
+            };
+            // ajax--getJson请求
+            $("input").click(function(){
+                alert(json.userName);
+                $.ajax({
+                    url: "testAjax",
+                    type: "post",
+                    dataType: "json",
+                    // contentType: 'application/json;charset=utf-8',
+                    data: json,
+                    success: function (result) {
+                        console.log(result);
+                    },
+                    error: {}
+                });
+            });
+        })
+
+    </script>
+</head>
+<body>
+
+<div id="app">
+    <input type="button" value="请求体JSON">
+    <p>{{res}}</p>
+</div>
+
+</body>
+</html>

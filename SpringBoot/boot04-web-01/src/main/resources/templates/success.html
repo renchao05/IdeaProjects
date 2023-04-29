@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>成功页面！！！</title>
+</head>
+<body>
+<h1 th:text="${test}">ren chao</h1>
+<h2>
+    <a href="https://www.tns.com" th:href="${link}" th:text="${bname}">tns网站</a>
+    <a href="https://www.tns.com" th:href="@{link}">tns网站</a>
+</h2>
+</body>
+</html>

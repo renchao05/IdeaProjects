@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="script/vue.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        function hello() {
+            alert("任超你好！！！")
+            person.sayHello();
+        }
+
+        /*定义js对象
+        方式一
+        var person = new Object();
+        person.id = "001";
+        person.name = "任超";
+        person.sayHello = function () {
+            alert("Hello,我是" + this.name);
+        };
+        */
+        //方式二
+        var person = {
+            id: "001",
+            name: "任超",
+            sayHello: function () {
+                alert("Hello,我的姓名是" + this.name);
+            }
+        };
+
+    </script>
+</head>
+<body>
+<div id="app">
+    <span>{{message}}</span>
+    <input type="button" value="打招呼" onclick="hello()">
+</div>
+
+
+</body>
+</html>

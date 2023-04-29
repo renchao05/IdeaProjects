@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chaoRen.myBatis.dao.UserMapper">
+<!--    column:数据库属性。property:javaBean属性-->
+    <resultMap id="MyUser" type="com.chaoRen.myBatis.bean.User">
+        <result column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="password" property="password"/>
+        <result column="email" property="email"/>
+    </resultMap>
+
+    <select id="getUserById" resultMap="MyUser">
+        select * from t_user where id = #{id}
+    </select>
+
+    <!--User getUserById(Integer id);-->
+    <select id="getUserByIdAndName" resultType="com.chaoRen.myBatis.bean.User">
+        select * from t_user where id = #{param1} and user_name=#{param2}
+    </select>
+
+    <!--User getUserById(Integer id);-->
+    <select id="getUserByMap" resultType="com.chaoRen.myBatis.bean.User">
+        select * from t_user where id = #{id} and user_name=#{userName}
+    </select>
+
+<!--    int deleteUserById(Integer id);-->
+    <delete id="deleteUserById">
+        delete from t_user where id=#{id}
+    </delete>
+<!--    List<User> getAllUser();-->
+    <select id="getAllUser" resultType="User">
+        select * from t_user
+    </select>
+
+    <!--    List<User> getAllUser();-->
+    <select id="getAllUserMap" resultType="map">
+        select * from t_user
+    </select>
+<!--    int addUser(User user);-->
+<!--    useGeneratedKeys="true" 获取主键值-->
+<!--    keyProperty="id" 获取到主键，封装给对应的对象属性-->
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user(user_name,password,email) values (#{userName},#{password},#{email})
+    </insert>
+<!--    int updateUser(User user);-->
+    <update id="updateUser">
+        update t_user set user_name=#{userName},password=#{password},email=#{email} where id=#{id}
+    </update>
+</mapper>

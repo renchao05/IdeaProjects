@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chaoren.mybatisx.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.chaoren.mybatisx.bean.User">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="sex" column="sex" jdbcType="INTEGER"/>
+            <result property="age" column="age" jdbcType="INTEGER"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,username,sex,
+        age,email,is_deleted
+    </sql>
+    <select id="searchAllById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        where
+        id = #{id,jdbcType=NUMERIC}
+    </select>
+    <select id="selectUsernameAndAgeById" resultMap="BaseResultMap">
+        select username, age
+        from t_user
+        where id = #{id,jdbcType=NUMERIC}
+    </select>
+    <select id="selectAllOrderByAgeDesc" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        order by age desc
+    </select>
+    <delete id="deleteByIdAndUsername">
+        delete
+        from t_user
+        where id = #{id,jdbcType=NUMERIC}
+          AND username = #{username,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insertSelective">
+        insert into t_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="username != null">username,</if>
+            <if test="sex != null">sex,</if>
+            <if test="age != null">age,</if>
+            <if test="email != null">email,</if>
+            <if test="isDeleted != null">is_deleted,</if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id,jdbcType=BIGINT},</if>
+            <if test="username != null">#{username,jdbcType=VARCHAR},</if>
+            <if test="sex != null">#{sex,jdbcType=INTEGER},</if>
+            <if test="age != null">#{age,jdbcType=INTEGER},</if>
+            <if test="email != null">#{email,jdbcType=VARCHAR},</if>
+            <if test="isDeleted != null">#{isDeleted,jdbcType=INTEGER},</if>
+        </trim>
+    </insert>
+    <update id="updateAgeAndEmailById">
+        update t_user
+        set age   = #{age,jdbcType=NUMERIC},
+            email = #{email,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
+    <select id="selectAllOrderByAgeAsc" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        order by age
+    </select>
+</mapper>

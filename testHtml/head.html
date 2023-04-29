@@ -1,0 +1,99 @@
+﻿<!--头部-->
+<div class="head">
+  <div class="header">
+  
+  <div class="con">
+<div class="left" id="topnav">  您好！欢迎进入明望物流官方网站！  <a href="/">货物追踪</a> | <a href="http://www.mingwangwl.com/kehu/2014062243.html">网上下单</a> | <a href="http://www.mingwangwl.com/kehu/2014061723.html">常见问题解答</a> | <a href="http://www.mingwangwl.com/kehu/2014061824.html">价格时效查询</a> | <a href="/">在线留言</a> | <a href="http://www.mingwangwl.com/kehu/2014062242.html"><span>免费服务热线:800-620-2035</span></a></div>
+<div class="right">
+
+<!-- Baidu Button BEGIN -->
+
+<div class="bdsharebuttonbox">
+<a href="#" class="bds_more" data-cmd="more"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+</div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- Baidu Button END -->
+</div>
+</div>
+
+    <h1 class="logo"><a href="{dede:global.cfg_basehost/}"><img align="上海明望物流有限公司" title="上海明望物流有限公司" src="{dede:global.cfg_templets_skin/}/images/log.png" /></a></h1>
+
+    <div class="topInfo"><img title="物流热线：{dede:global.dianhua/}" alt="物流热线：{dede:global.dianhua/}" src="{dede:global.cfg_templets_skin/}/images/call.gif" /></div>
+	
+		<div class="topInfo2">	
+	<form  action="{dede:global.cfg_cmsurl/}/plus/search.php"  name="formsearch" >
+
+
+       <input name="q" type="text" id="search-keyword"  style="width: 159px; height:16px; line-height:16px; position:absolute; right:0px; padding:2px 3px; border:1px solid #9D9D9D; color:#9D9D9D;" value="查找物流线路 如：北京" onClick="this.value='';" />
+
+   <input type="image"  style="position:absolute;" src="http://www.mingwangwl.com/templets/chao/images/soushuo.gif" alt="物流运输线路搜索" />
+
+ </form>
+	</div>
+	
+  </div>
+<!--导航-->
+
+  <div class="nav">
+
+    <ul class="navList">
+
+      <li><a href="{dede:global.cfg_basehost/}">首 页</a></li>
+	  
+	  {dede:channel type='top' row='9' currentstyle="<li class='hover'><a href='~typelink~' ~rel~><span>~typename~</span></a></li>"}
+	 
+	  <li class="nav_line"></li>
+      <li><a href="[field:typeurl/]">[field:typename/]</a></li>
+	  
+	  {/dede:channel}
+	  
+	  
+    </ul>
+
+  </div>
+  
+<div class="banner">
+
+	<img src="http://www.mingwangwl.com/images/d1.jpg"/>
+	<img src="http://www.mingwangwl.com/images/d2.jpg"/>
+	<img src="http://www.mingwangwl.com/images/d3.jpg"/>
+	<ul class="button">
+		<li class="hover"></li>
+		<li></li>
+		<li></li>
+	</ul>
+	
+	<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/js/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+        var index=0;//声明序列号默认从0开始的
+        var play=null;
+        $(".button li").mouseover(function(){
+            clearInterval(play);
+            index=$(this).index();
+            // alert(index);
+            $(this).addClass("hover").siblings().removeClass("hover");
+            <!--this表示当前对象sibling表示同等级的对象-->
+            $(".banner img").eq(index).show().siblings("img").hide();
+        }).mouseout(function(){
+            autoplay();
+        });
+        function autoplay(){
+            play=setInterval(function(){
+                index++;
+                if(index>3){index=-1;}else{
+                    $(".button li").eq(index).addClass("hover").siblings().removeClass("hover");
+                    $(".banner img").eq(index).show().siblings("img").hide();}
+            },2000);
+        }
+        autoplay();
+    </script>
+
+</div>

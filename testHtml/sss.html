@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="gb2312"?>
+<html>
+<head>
+    <title>第一个网页</title>
+    <meta charset="gb123"/>    <!--设置编码-->
+    <style type="text/css">
+        *{margin:0px;}
+        .flash{
+            width:653px;height:256px;margin:100px auto;position:relative;
+            overflow:hidden;}
+        .flash ul{width:70px;height:15px;background-color:rgba(0,0,0,0.5);padding:5px 20px;
+            border-radius:10px;position:absolute;top:120px;left:280px;
+        }
+        .flash ul li{width:10px;height:10px;border:1px solid white;float:left;color:#fff;
+            margin-right:3px;border-radius:7px;padding:1px;list-style-type:none;
+        }
+        .flash ul li.hover{background:#fff;}
+
+    </style>
+</head>
+<body >
+<div class="flash">
+    <img src="http://www.mingwangwl.com/images/d1.jpg"/>
+    <img src="http://www.mingwangwl.com/images/d2.jpg"/>
+    <img src="http://www.mingwangwl.com/images/d3.jpg"/>
+    <ul class="button">
+        <li class="hover"></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+    var index=0;//声明序列号默认从0开始的
+    var play=null;
+    $(".button li").mouseover(function(){
+        clearInterval(play);
+        index=$(this).index();
+        // alert(index);
+        $(this).addClass("hover").siblings().removeClass("hover");
+        <!--this表示当前对象sibling表示同等级的对象-->
+        $(".flash img").eq(index).show().siblings("img").hide();
+    }).mouseout(function(){
+        autoplay();
+    });
+    function autoplay(){
+        play=setInterval(function(){
+            index++;
+            if(index>3){index=-1;}else{
+                $(".button li").eq(index).addClass("hover").siblings().removeClass("hover");
+                $(".flash img").eq(index).show().siblings("img").hide();}
+        },2000);
+    }
+    autoplay();
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+#
+#spring:
+#  mvc:
+#    static-path-pattern: /chao/**
+#  resources:
+#    static-locations: [classpath:/ren/]
+
+spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+    contentnegotiation:
+      favor-parameter: true #开启请求参数内容协商模式
+  redis:
+    port: 6379
+    host: 192.168.123.89

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+<!--    <link rel="icon" href="favicon.ico" type="image/x-icon"/>-->
+</head>
+<body>
+<h1>这个是首页！！！</h1>
+测试REST风格 <br>
+<form action="/user" method="get" >
+    <input type="submit" value="REST-GET 提交">
+</form><br>
+<form action="/user" method="post">
+    <input type="submit" value="REST-POST 提交">
+</form><br>
+<form action="/user" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="REST-DELETE 提交">
+</form><br>
+<form action="/user" method="post">
+    <input type="hidden" name="_method" value="put">
+    <input type="submit" value="REST-PUT 提交">
+</form><br>
+
+<a href="/car/222/owner/任超">测试@PathVariable</a><br>
+
+<form action="save" method="post">
+    用户名：<input type="text" name="username"><br>
+    密码：<input type="password" name="password"><br>
+    <input type="submit" value="提交按钮">
+</form>
+<br>
+<br>
+
+<form action="savePerson" method="get">
+    姓名： <input name="userName"/> <br/>
+    年龄： <input name="age"/> <br/>
+    生日： <input name="birth"/> <br/>
+<!--    宠物姓名：<input name="pet.name"/><br/>-->
+<!--    宠物年龄：<input name="pet.age"/><br>-->
+    宠物：<input name="pet"/><br>
+    <input type="submit" value="提交Person">
+</form>
+
+
+
+</body>
+</html>

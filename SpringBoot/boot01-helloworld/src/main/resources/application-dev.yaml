@@ -1,0 +1,6 @@
+server:
+  port: 8889
+
+car:
+  brand: 宝马2.0
+  price: 10000

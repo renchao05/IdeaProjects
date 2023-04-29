@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        // window.onload = function () {
+        //     alert("任超是工程师")
+        // };
+        function fun1() {
+            alert("按钮1被点击了")
+        }
+
+        window.onload = function () {
+            var ebi = document.getElementById("c001");
+            var pwd = document.getElementById("password");
+            var b002 = document.getElementById("b002");
+            var form = document.getElementById("form01");
+            ebi.onclick=function () {
+                alert("我是按钮2被ddddd")
+            }
+            pwd.onblur=function () {
+                console.log("任超测试动态失去焦点事件");
+            }
+            b002.onchange=function () {
+                alert("男士被改变。。。。")
+            }
+            form.onsubmit=function () {
+                alert("动态注册表达提交方法。");
+                return true;
+            }
+        };
+        function fb() {
+            console.log("任超测试静态失去焦点事件");
+        }
+        function onchangeFun() {
+            alert("女神已经被改变的了")
+        }
+
+        function subFun() {
+            alert("静态注册表达提交方法。");
+            alert("输入内容不合法");
+            return false;
+        }
+    </script>
+</head>
+<body>
+<button onclick="fun1()">按钮1</button> <br/><br/><br/>
+<button id="c001">按钮2</button> <br/><br/>
+
+用户名：<input type="text" onblur="fb()"><br/>
+密码：<input id="password" type="text"><br/><br/>
+请选择你心中的女神：
+<select onchange="onchangeFun()">
+    <option>--女神--</option>
+    <option>菲菲</option>
+    <option>玲玲</option>
+    <option>美美</option>
+</select><br/><br/>
+
+请选择你心中的男神：
+<select id="b002">
+    <option>--男神--</option>
+    <option>男1</option>
+    <option>男2</option>
+    <option>男3</option>
+</select>
+
+<form action="https://baidu.com" method="get" onsubmit="return subFun()">
+    <input type="submit" value="静态注册"/>
+</form> <br/><br/>
+
+<form action="https://baidu.com" id="form01">
+    <input type="submit" value="动态注册"/>
+</form>
+
+</body>
+</html>

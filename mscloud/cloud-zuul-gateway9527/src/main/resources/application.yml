@@ -1,0 +1,34 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: cloud-zuul-gateway
+
+eureka:
+  client:
+    service-url:
+      #defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+      defaultZone: http://eureka1.com:7001/eureka
+  instance:
+    instance-id: gateway-9527.com
+    prefer-ip-address: true
+
+
+zuul:
+  prefix: /renchao
+  ignored-services: cloud-payment-service
+  routes: # 路由映射配置
+    mypayment:  # 名称自定义
+      path: /cps/**  # IE地址栏输入的路径
+      serviceId: cloud-payment-service  # 注册到注册中心的微服务名称
+
+    # 下面这种配置方式与上面的效果是一样的，前面是微服务名称，后面是访问路径
+    cloud-payment-service: /cps2/**
+
+# 开启查看路由的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

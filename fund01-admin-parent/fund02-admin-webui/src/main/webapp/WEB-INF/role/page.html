@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/ztree/zTreeStyle.css}"/>
+<head th:replace="common/admin :: header"></head>
+<script type="text/javascript" th:src="@{/ztree/jquery.ztree.all-3.5.min.js}"></script>
+<script type="text/javascript" th:src="@{/crowd/my-role.js}" charset="utf-8"></script>
+<script type="text/javascript">
+    // 1.为分页操作准备初始化数据
+    var url = "[[@{/admin/role}]]";
+    var authUrl = "[[@{/admin/auth}]]";
+    var assignUrl = "[[@{/assign/auth}]]";
+    var pageNum = 1;
+    var keyword = "";
+    var roleId;
+    var roleArray = [];
+
+    $(function () {
+        //初始化页面的一些事件
+        init();
+        // 2.调用执行分页的函数，显示分页效果
+        generatePage();
+    });
+
+</script>
+
+<body>
+<nav th:replace="common/admin :: nav"></nav>
+<div class="container-fluid">
+    <div class="row">
+
+
+        <div th:replace="common/admin :: sidebar"></div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="glyphicon glyphicon-th"></i> 数据列表</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-inline" role="form" style="float:left;">
+                        <div class="form-group has-feedback">
+                            <div class="input-group">
+                                <div class="input-group-addon">查询条件</div>
+                                <input id="keyword" class="form-control has-success" type="text" placeholder="请输入查询条件">
+                            </div>
+                        </div>
+                        <button id="keywordBtn" type="button" class="btn btn-warning"><i class="glyphicon glyphicon-search"></i> 查询</button>
+                    </form>
+                    <button id="btn-delete" type="button" class="btn btn-danger" style="float:right;margin-left:10px;"><i class=" glyphicon glyphicon-remove"></i> 删除</button>
+                    <button id="showAddModal" type="button" class="btn btn-primary" style="float:right;"><i class="glyphicon glyphicon-plus"></i> 新增</button>
+                    <br>
+                    <hr style="clear:both;">
+                    <div class="table-responsive">
+                        <table class="table  table-bordered">
+                            <thead>
+                            <tr>
+                                <th width="30">#</th>
+                                <th width="30"><input id="allRoleBox" type="checkbox"></th>
+                                <th>名称</th>
+                                <th width="100">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody class="rolePageBody">
+
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="6" align="center">
+                                    <ul class="pagination"></ul>
+                                </td>
+                            </tr>
+
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div th:replace="common/modal :: roleAdd"></div>
+<div th:replace="common/modal :: roleUpdate"></div>
+<div th:replace="common/modal :: roleDelete"></div>
+<div th:replace="common/modal :: assignRole"></div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script type="text/javascript" src="script/vue.js"></script>
+    <script type="text/javascript" src="script/axios.min.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            //定义Vue对象
+            var vue = new Vue({
+                "el": "#app",  //对应的节点标签ID
+                //Vue对象的属性
+                data: {
+                    name: "renchao",
+                    password: "123456"
+                },
+                //Vue对象的方法（函数）
+                methods: {
+                    //方法
+                    requestBodyJSON:function () {
+                        //axios
+                        axios({ //请求信息
+                            method: "post",
+                            url:"testJSON",
+                            data:{
+                                fid:555,
+                                name:"苹果",
+                                price:6,
+                                count:88,
+                                remark:"非常好吃"
+                            }
+                        }).then(function (response) {    //响应对象
+                            alert(response.data);
+                            console.log(response);
+                        }).catch(function (error) { //封装了服务器端处理请求失败后相应的错误信息
+                            alert(error);
+                            console.log(error);
+                        });
+                    }
+                }
+            });
+        };
+
+    </script>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="请求体JSON" @click="requestBodyJSON">
+</div>
+</body>
+</html>

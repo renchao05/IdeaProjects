@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p><span th:text="${#ctx.getClass().getName()}">测试#lists</span></p>
+<hr>
+<h1>下面是导入的页面</h1>
+<div th:replace="list :: header">
+
+</div>
+</body>
+</html>

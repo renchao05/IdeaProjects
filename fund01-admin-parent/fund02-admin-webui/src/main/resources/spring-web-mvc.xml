@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 配置自动扫描的包 -->
+    <context:component-scan base-package="com.renchao.fund.mvc"/>
+
+    <!-- 配置 Thymeleaf 视图解析器 -->
+    <bean id="templateResolver"
+          class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=".html"/>
+        <property name="characterEncoding" value="UTF-8"/>
+        <property name="order" value="1"/>
+        <property name="templateMode" value="HTML5"/>
+        <property name="cacheable" value="false"/>
+    </bean>
+
+    <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver"/>
+        <!--加入下面配置-->
+        <property name="additionalDialects">
+            <set>
+                <bean class="org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect"/>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine"/>
+        <property name="characterEncoding" value="UTF-8"/>
+    </bean>
+
+    <!-- 处理静态资源，例如html、js、css、jpg -->
+    <mvc:default-servlet-handler/>
+
+    <!-- 启用注解驱动 -->
+    <mvc:annotation-driven/>
+
+    <!--异常处理-->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <!--禁止访问异常-->
+                <prop key="com.renchao.fund.exception.AccessForbiddenException">admin/login</prop>
+            </props>
+        </property>
+        <property name="exceptionAttribute" value="ex"/>
+    </bean>
+
+    <!--视图控制器-->
+    <mvc:view-controller path="/admin/login" view-name="admin/login"/>
+    <mvc:view-controller path="/admin/main" view-name="admin/main"/>
+    <mvc:view-controller path="/admin/toAdd" view-name="admin/add"/>
+    <mvc:view-controller path="/admin/role/page" view-name="role/page"/>
+    <mvc:view-controller path="/admin/menu/page" view-name="menu/page"/>
+
+
+<!--    <mvc:interceptors>
+        <mvc:interceptor>
+            &lt;!&ndash; 设置需要拦截的请求，*表示单层路径，**表示多层路径 &ndash;&gt;
+            <mvc:mapping path="/**"/>
+            &lt;!&ndash; 设置需要排除的请求，即不需要拦截的 &ndash;&gt;
+            <mvc:exclude-mapping path="/admin/do/login/page"/>
+            <mvc:exclude-mapping path="/admin/do/login"/>
+            <mvc:exclude-mapping path="/admin/do/logout"/>
+            <mvc:exclude-mapping path="/admin/do/logout"/>
+
+            <bean class="com.renchao.fund.mvc.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors> -->
+
+</beans>

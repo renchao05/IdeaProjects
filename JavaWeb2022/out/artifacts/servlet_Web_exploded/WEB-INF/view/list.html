@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:fragment="header">
+<table border="1">
+    <thead>
+    <tr>
+        <th>员工编号</th>
+        <th>员工姓名</th>
+        <th>员工工资</th>
+        <th>迭代索引</th>
+        <th>迭代索引</th>
+        <th>元素总数</th>
+        <th>偶数还是奇数</th>
+        <th>否是第一个</th>
+        <th>否是最后一个</th>
+    </tr>
+    </thead>
+
+    <tbody th:if="${#lists.isEmpty(employeeList)}">
+    <tr>
+        <td colspan="3">抱歉！没有查询到你搜索的数据！</td>
+    </tr>
+    </tbody>
+
+    <tbody th:unless="${#lists.isEmpty(employeeList)}">
+    <tr th:each="employee,empStatus : ${employeeList}">
+        <td th:text="${employee.empId}">empId</td>
+        <td th:text="${employee.empName}">empName</td>
+        <td th:text="${employee.empSalary}">empSalary</td>
+        <td th:text="${empStatus.index}"></td>
+        <td th:text="${empStatus.count}"></td>
+        <td th:text="${empStatus.size}"></td>
+        <td th:text="${empStatus.even}"></td>
+        <td th:text="${empStatus.first}"></td>
+        <td th:text="${empStatus.last}"></td>
+    </tr>
+    </tbody>
+
+
+</table>
+
+<hr>
+
+<h3>测试switch</h3>
+<div th:switch="${memberLevel}">
+    <p th:case="level-1">银牌会员</p>
+    <p th:case="level-2">金牌会员</p>
+    <p th:case="level-3">白金会员</p>
+    <p th:case="level-4">钻石会员</p>
+</div>
+
+
+</body>
+</html>

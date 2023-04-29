@@ -1,0 +1,44 @@
+server:
+  port: 2002
+
+spring:
+  application:
+    name: seata-storage-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.10.188:8848
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seata_storage
+    username: root
+    password: 123
+
+logging:
+  level:
+    io:
+      seata: info
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+
+
+seata:
+  tx-service-group: default_tx_group
+  service:
+    vgroup-mapping:
+      default_tx_group: default
+  config:
+    type: nacos
+    nacos:
+      server-addr: 192.168.10.188:8848
+      group : "SEATA_GROUP"
+      namespace: "6a8ee0cb-25fa-42ea-8336-1c62a88751af"
+      dataId: "seataServer.properties"
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 192.168.10.188:8848
+      group : "SEATA_GROUP"
+      namespace: "6a8ee0cb-25fa-42ea-8336-1c62a88751af"

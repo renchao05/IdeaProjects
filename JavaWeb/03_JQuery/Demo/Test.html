@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="script/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#cc2').click(function () {
+                alert("我是div");
+            });
+            $('span').click(function () {
+                alert("我是span");
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="cc2">我是div2
+<span>我是span</span>
+</div>
+
+</body>
+</html>

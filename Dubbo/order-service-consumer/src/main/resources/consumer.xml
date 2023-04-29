@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.renchao.gmall.service"/>
+
+    <!-- 应用名 -->
+    <dubbo:application name="gmall-order-web"/>
+    <!-- 指定注册中心地址 -->
+    <dubbo:registry address="zookeeper://192.168.123.110:2181" />
+
+    <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
+    <dubbo:reference id="userService" interface="com.renchao.gmall.service.UserService"/>
+
+    <!-- 监控中心协议，如果为protocol="registry"，表示从注册中心发现监控中心地址，否则直连监控中心 -->
+<!--    <dubbo:monitor protocol="registry"/>-->
+    <dubbo:monitor address="192.168.123.110:7070"/>
+
+
+
+
+</beans>

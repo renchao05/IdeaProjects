@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-model.trim="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo02</title>
+    <script src="script/vue.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var vue = new Vue({
+                el: "#app",
+                data: {
+                    num:2
+                }
+            });
+        };
+
+    </script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="num">
+    <!--v-if和v-else之间不能插入其他节点-->
+<!--    <div v-if="num%2==0" style="width: 200px;height: 200px;background-color: red"></div>-->
+    <div v-else="num%2==0"  style="width: 200px;height: 200px;background-color: aquamarine"></div>
+</div>
+
+
+</body>
+</html>

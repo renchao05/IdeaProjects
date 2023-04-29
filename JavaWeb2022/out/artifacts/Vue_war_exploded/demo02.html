@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo02</title>
+    <script src="script/vue.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var vue = new Vue({
+                el: "#app",
+                data: {
+                    message: "hello,任超==",
+                    vueValue: "任超，你好！！"
+                }
+            });
+        };
+
+    </script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model.trim="vueValue">
+    <p>{{vueValue}}</p>
+</div>
+
+
+</body>
+</html>

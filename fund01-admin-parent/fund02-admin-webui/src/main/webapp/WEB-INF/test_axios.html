@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" th:src="@{/script/vue.js}"></script>
+    <script type="text/javascript" th:src="@{/script/axios.min.js}"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            //定义Vue对象
+            var vue = new Vue({
+                "el": "#app",  //对应的节点标签ID
+                //Vue对象的属性
+                data: {
+                    res: "sss",
+                },
+                //Vue对象的方法（函数）
+                methods: {
+                    //方法
+                    requestBodyJSON: function () {
+                        //axios
+                        axios({ //请求信息
+                            method: "post",
+                            url: "testJSON",
+                            // params 是与请求一起发送的 URL 参数
+                            data: {
+                                id: 1,
+                                loginAcct: "超01",
+                                userPswd: 1234,
+                                userName: "超一号",
+                                email: "11@qq.com"
+                            }
+                        }).then(function (response) {    //响应对象
+                            var str = response.data.data.userName;
+                            alert(str);
+                            vue.res = str;
+                            console.log(response);
+                        }).catch(function (error) { //封装了服务器端处理请求失败后相应的错误信息
+                            alert(error);
+                            console.log(error);
+                        });
+                    }
+                }
+            });
+        };
+
+    </script>
+</head>
+<body>
+
+<div id="app">
+    <input type="button" value="请求体JSON" @click="requestBodyJSON">
+    <p>{{res}}</p>
+</div>
+
+</body>
+</html>

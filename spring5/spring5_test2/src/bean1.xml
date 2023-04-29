@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="student" class="com.chaoRen.collectiontype.Student">
+        <property name="arr">
+            <array>
+                <value>任超</value>
+                <value>王道月</value>
+                <value>任子馨</value>
+                <value>任传睿</value>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value>超</value>
+                <value>月</value>
+                <value>馨</value>
+                <value>睿</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="1" value="任超"/>
+                <entry key="2" value="王道月"/>
+                <entry key="3" value="任子馨"/>
+                <entry key="4" value="任传睿"/>
+            </map>
+        </property>
+        <property name="set">
+            <set>
+                <value>馨</value>
+                <value>睿</value>
+            </set>
+        </property>
+        <property name="foods">
+            <list>
+                <ref bean="food1"/>
+                <ref bean="food2"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--创建多个 food 对象-->
+    <bean id="food1" class="com.chaoRen.collectiontype.Food" p:name="米饭"/>
+    <bean id="food2" class="com.chaoRen.collectiontype.Food" p:name="青菜"/>
+</beans>

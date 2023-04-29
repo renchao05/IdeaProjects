@@ -1,0 +1,6 @@
+server:
+  port: 8889
+
+car:
+  brand: 奥迪
+  price: 10000

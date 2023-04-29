@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/admin :: header"></head>
+<script type="text/javascript">
+    $(function () {
+
+        // 左边移到右边
+        $(".glyphicon-chevron-right").click(function () {
+            // select 是标签选择器
+            // :eq(0)表示选择页面上的第一个
+            // :eq(1)表示选择页面上的第二个
+            // “>”表示选择子元素
+            // :selected 表示选择“被选中的”option
+            // appendTo()能够将 jQuery 对象追加到指定的位置
+            $("select:eq(0) > option:selected").appendTo("select:eq(1)");
+        });
+
+        // 右边移到左边
+        $(".glyphicon-chevron-left").click(function () {
+            $("select:eq(1) > option:selected").appendTo("select:eq(0)");
+        });
+
+        // 提交保存分配关系
+        $("#submitBtn").click(function () {
+            $("select:eq(1) > option").prop("selected", "selected");
+        });
+    });
+</script>
+
+<body>
+
+<nav th:replace="common/admin :: nav"></nav>
+<div class="container-fluid">
+    <div class="row">
+
+        <div th:replace="common/admin :: sidebar"></div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <ol class="breadcrumb">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">数据列表</a></li>
+                <li class="active">分配角色</li>
+            </ol>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form th:action="@{/assign/role}" method="post" role="form" class="form-inline">
+                        <div class="form-group">
+                            <label>未分配角色列表</label><br>
+                            <select class="form-control" multiple="" size="10" style="width:100px;overflow-y:auto;">
+                                <!--value 实际发送给服务器的数据-->
+                                <option th:each="nRole : ${nRoles}" th:value="${nRole.id}">[[${nRole.name}]]</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <ul>
+                                <li class="btn btn-default glyphicon glyphicon-chevron-right"></li>
+                                <br>
+                                <li class="btn btn-default glyphicon glyphicon-chevron-left" style="margin-top:20px;"></li>
+                            </ul>
+                        </div>
+                        <div class="form-group" style="margin-left:40px;">
+                            <label>已分配角色列表</label><br>
+                            <select name="rolesId" class="form-control" multiple="" size="10" style="width:100px;overflow-y:auto;">
+                                <option th:each="role : ${roles}" th:value="${role.id}">[[${role.name}]]</option>
+                            </select>
+                        </div>
+                        <br><br>
+                        <!--添加的提交按钮-->
+                        <div style="width: 280px">
+                            <input id="submitBtn" style="float:right;" type="submit" value="保存">
+                        </div>
+                        <!--当前用户id-->
+                        <input type="hidden" name="adminId" th:value="${param.id}">
+                        <!--原始的来源分页页面，提交后还重定向该页面-->
+                        <input type="hidden" name="referer" th:value="${referer}">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+</body>
+</html>

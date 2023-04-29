@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+
+    <!--当前应用的名字  -->
+    <dubbo:application name="gmall-user"/>
+    <!--指定注册中心的地址  -->
+    <dubbo:registry address="zookeeper://192.168.123.110:2181" />
+    <!--使用dubbo协议，将服务暴露在20880端口  -->
+    <dubbo:protocol name="dubbo" port="20883" />
+    <!-- 指定需要暴露的服务 -->
+    <dubbo:service interface="com.renchao.gmall.service.UserService" ref="userServiceImpl" />
+
+    <bean id="userServiceImpl" class="com.renchao.gmall.service.impl.UserServiceImpl"/>
+
+</beans>

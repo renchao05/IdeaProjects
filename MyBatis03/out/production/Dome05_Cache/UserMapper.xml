@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chaoRen.myBatis.dao.UserMapper">
+
+    <cache/>
+    <select id="getUserById" resultType="com.chaoRen.myBatis.bean.User">
+        select *
+        from t_user
+        where id = #{id}
+    </select>
+    <insert id="addUser">
+        insert into t_user(user_name,password,email)
+        values (#{userName},#{password},#{email})
+    </insert>
+</mapper>

@@ -1,0 +1,14 @@
+#c001{
+    border: 1px solid red;
+    color: rebeccapurple;
+    font-size: 35px;
+}
+#b002{
+    border: 1px solid greenyellow;
+    color: rebeccapurple;
+    font-size: 35px;
+}
+
+span{
+    border: 2px solid #2ead34;
+}

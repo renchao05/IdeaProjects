@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo02</title>
+    <script type="text/javascript" src="script/vue.js"></script>
+    <script type="text/javascript" src="script/axios.min.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var vue = new Vue({
+                el: "#app",
+                data: {
+                    fruitList:[],
+                    name: "",
+                    price: "",
+                    fcount: "",
+                    remark: ""
+                },
+                methods:{
+                    addFruit:function () {
+                        axios({
+                            method: "post",
+                            url:"addFruit",
+                            data:{
+                                name: vue.name,
+                                price: vue.price,
+                                count: vue.fcount,
+                                remark: vue.remark
+                            }
+                        }).then(function (response) {
+                            vue.showFruit();
+                            alert(response);
+                        }).catch(function (error) {
+                            alert(error);
+                        });
+                    },
+                    showFruit:function () {
+                        alert("任超");
+                        axios({
+                            method: "post",
+                            url:"showFruit",
+                        }).then(function (response) {
+                            alert(response.data);
+                            vue.fruitList = response.data;
+                        }).catch(function (error) {
+                            alert(error);
+                        });
+                    }
+                }
+            });
+        };
+
+    </script>
+</head>
+<body>
+<div id="app">
+    <table border="1" width="400" cellpadding="4" cellspacing="0">
+        <tr>
+            <th>名称</th>
+            <th>单价</th>
+            <th>库存</th>
+            <th>备注</th>
+        </tr>
+        <tr align="center" v-for="fruit in fruitList">
+            <th>{{fruit.name}}</th>
+            <th>{{fruit.price}}</th>
+            <th>{{fruit.count}}</th>
+            <th>{{fruit.remark}}</th>
+        </tr>
+    </table>
+
+    <!-- 第一部分：四个文本框 -->
+    名称：<input type="text" v-model="name" /><br/>
+    单价：<input type="text" v-model="price" /><br/>
+    库存：<input type="text" v-model="fcount" /><br/>
+    备注：<input type="text" v-model="remark" /><br/>
+
+    <!-- 第二部分：显示收集到的文本框数据的p标签 -->
+
+    <!-- 第三部分：按钮 -->
+    <input type="button" value="显示数据" @click="showFruit">
+    <input type="button" value="添加记录" @click="addFruit">
+</div>
+
+<div id="appDiv">
+
+
+</div>
+
+</body>
+</html>

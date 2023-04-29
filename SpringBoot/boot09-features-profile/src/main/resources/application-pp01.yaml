@@ -1,0 +1,7 @@
+person:
+  name: 测试环境的任超
+
+chaoren:
+  hello:
+    prefix: 今天天气不错
+    suffix: 333
